@@ -1,0 +1,10 @@
+[01-Oct-2022 17:35:22 Europe/Berlin] PHP Fatal error:  Uncaught PDOException: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'soead.peladomamahuevo' doesn't exist in C:\xampp\htdocs\phpREST\Models\GetModel.php:9
+Stack trace:
+#0 C:\xampp\htdocs\phpREST\Models\GetModel.php(9): PDOStatement->execute()
+#1 C:\xampp\htdocs\phpREST\Controllers\GetController.php(7): GetModel::getTable('peladomamahuevo')
+#2 C:\xampp\htdocs\phpREST\Routes\Services\Get.php(7): GetController::getTable('peladomamahuevo')
+#3 C:\xampp\htdocs\phpREST\Routes\Routes.php(26): include('C:\\xampp\\htdocs...')
+#4 C:\xampp\htdocs\phpREST\Controllers\routes.controller.php(6): include('C:\\xampp\\htdocs...')
+#5 C:\xampp\htdocs\phpREST\index.php(15): RoutesController->index()
+#6 {main}
+  thrown in C:\xampp\htdocs\phpREST\Models\GetModel.php on line 9

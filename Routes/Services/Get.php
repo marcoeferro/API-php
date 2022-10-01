@@ -1,7 +1,9 @@
-<?php
-    $table = $routesArray[2];    
+<?php    
     require_once "Controllers/GetController.php";
 
-    $table = $routesArray[2];
+    $table = explode("?",$routesArray[2]) [0];
+    echo '<pre>'; print_r($table); echo '</pre>';
+    return;
+    $select = $_GET["select"] ?? "*";
     $response = new GetController();
-    $response ->getTable($table);
+    $response ->getTable($table,$select);

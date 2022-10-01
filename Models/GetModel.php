@@ -2,11 +2,16 @@
     require_once "Connection.php";
     class GetModel
     {
-        static public function getTable($table)
+        static public function getTable($table,$select)
         {
-            $sql = "SELECT * FROM $table";
+            $sql = "SELECT $select FROM $table";
             $stmt = Connection::connect()->prepare($sql);
-            $stmt -> execute();
+            try {
+                $stmt -> execute();
+            } catch (\Throwable $th) {
+                return null;
+            }
+            
             
             return $stmt -> fetchAll(PDO::FETCH_CLASS);
         }

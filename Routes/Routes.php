@@ -3,7 +3,6 @@
     #echo '<pre>'; print_r($routesArray); echo '</pre>';
     $routesArray = array_filter($routesArray);
     
-    $table = $routesArray[2];
 
     $httpMethod = $_SERVER['REQUEST_METHOD'];
     

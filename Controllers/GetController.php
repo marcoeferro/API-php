@@ -2,14 +2,14 @@
     require_once "Models/GetModel.php";
     class GetController 
     {
-        static public function getTable($table)
+        static public function getTable($table,$select)
         {
-            $response = GetModel::getTable($table);
+            $response = GetModel::getTable($table,$select);
 
             $return = new GetController();
             $return -> fncResponse($response);
 
-            return $response;
+            #return $response;
         }
         /*================================
         Controller responses
