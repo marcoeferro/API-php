@@ -1,8 +1,9 @@
 <?php
     $routesArray = explode("/",$_SERVER['REQUEST_URI']);
+    #echo '<pre>'; print_r($routesArray); echo '</pre>';
     $routesArray = array_filter($routesArray);
     
-    $table = $routesArray[1];
+    $table = $routesArray[2];
 
     $httpMethod = $_SERVER['REQUEST_METHOD'];
     
