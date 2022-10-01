@@ -11,7 +11,6 @@
     =====================================*/
     require_once "Models/connection.php";
     require_once "Controllers/routes.controller.php";
-    
     $index = new RoutesController();
     $index-> index();
     
