@@ -5,9 +5,13 @@
         /*===========================
         Unfiltered Get Request
         =============================*/ 
-        static public function getTable($table,$select)
+        static public function getTable($table,$select,$orderBy,$orderMode)
         {
             $sql = "SELECT $select FROM $table";
+            if($orderBy != null && $orderMode != null)
+            {
+                $sql = "SELECT $select FROM $table ORDER BY $orderBy $orderMode";
+            }
             $stmt = Connection::connect()->prepare($sql);
             try {
                 $stmt -> execute();
@@ -21,7 +25,7 @@
         /*===========================
         Filtered Get Request
         =============================*/ 
-        static public function getTableFiltered($table,$select,$linkTo,$equalTo)
+        static public function getTableFiltered($table,$select,$linkTo,$equalTo,$orderBy,$orderMode)
         {
             $linkToArray = explode(",",$linkTo);
             $equalToArray = explode("_",$equalTo);
@@ -39,6 +43,10 @@
             
             $sql = "SELECT $select FROM $table WHERE $linkToArray[0] = :$linkToArray[0] $linktoText";
             
+            if($orderBy != null && $orderMode != null)
+            {
+                $sql = "SELECT $select FROM $table WHERE $linkToArray[0] = :$linkToArray[0] $linktoText ORDER BY $orderBy $orderMode";
+            }
             $stmt = Connection::connect()->prepare($sql);
             foreach ($linkToArray as $key => $value) {
                 $stmt -> bindParam(":".$value,$equalToArray[$key], PDO::PARAM_STR);

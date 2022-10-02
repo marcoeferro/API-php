@@ -5,9 +5,9 @@
         /*===========================
         Unfiltered Get Request
         =============================*/
-        static public function getTable($table,$select)
+        static public function getTable($table,$select,$orderBy,$orderMode)
         {
-            $response = GetModel::getTable($table,$select);
+            $response = GetModel::getTable($table,$select,$orderBy,$orderMode);
 
             $return = new GetController();
             $return -> fncResponse($response);
@@ -16,9 +16,9 @@
         /*===========================
         Filtered Get Request
         =============================*/ 
-        static public function getTableFiltered($table,$select,$linkTo,$equalTo)
+        static public function getTableFiltered($table,$select,$linkTo,$equalTo,$orderBy,$orderMode)
         {
-            $response = GetModel::getTableFiltered($table,$select,$linkTo,$equalTo);
+            $response = GetModel::getTableFiltered($table,$select,$linkTo,$equalTo,$orderBy,$orderMode);
 
             $return = new GetController();
             $return -> fncResponse($response);

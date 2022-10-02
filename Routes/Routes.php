@@ -25,10 +25,7 @@
                 include "Services/Get.php";
                 break;
             case "POST":
-                $json = array(
-                    'status' => 200,
-                    'result' => 'solicitud POST'
-                );
+                include "Services/Post.php";
                 break;
             case "PUT":
                 $json = array(
