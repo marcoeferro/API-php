@@ -24,6 +24,17 @@
             $return -> fncResponse($response);
 
         }
+        /*==========================================
+        Unfitered Get Request between related tables 
+        ===========================================*/
+        static public function getRelTable($rel,$type,$table,$select,$orderBy,$orderMode,$startAt,$endAt)
+        {
+            $response = GetModel::getRelTable($rel,$type,$table,$select,$orderBy,$orderMode,$startAt,$endAt);
+            
+            $return = new GetController();
+            $return -> fncResponse($response);
+
+        }
         /*================================
         Controller responses
         ==================================*/

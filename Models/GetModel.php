@@ -7,12 +7,12 @@
         =============================*/ 
         static public function getTable($table,$select,$orderBy,$orderMode,$startAt,$endAt)
         {   /*===========================
-            Unordered and unrestricted
+            Not Sorted and unrestricted
             =============================*/ 
             $sql = "SELECT $select FROM $table";
             
             /*===========================
-            Ordenated and unrestricted
+            Sorted and unrestricted
             =============================*/ 
             if($orderBy != null && $orderMode != null && $startAt == null && $endAt == null) 
             {
@@ -20,7 +20,7 @@
 
             }
             /*===========================
-            Ordenated and restricted
+            Sorted and restricted
             =============================*/
             if ($orderBy != null && $orderMode != null && $startAt != null && $endAt != null) 
             {
@@ -29,7 +29,7 @@
 
             }
             /*===========================
-            Unordered and restricted
+            Not Sorted and restricted
             =============================*/
             if ($orderBy == null && $orderMode == null && $startAt != null && $endAt != null) {
                  
@@ -100,6 +100,59 @@
                 $stmt -> bindParam(":".$value,$equalToArray[$key], PDO::PARAM_STR);
             }
             
+            
+            try {
+                $stmt -> execute();
+            } catch (\Throwable $th) {
+                return null;
+            }
+            
+            
+            return $stmt -> fetchAll(PDO::FETCH_CLASS);
+        }
+
+        /*============================================
+        Unfiltered Get Request Between Related  Tables (WORK IN PROGRESS)
+        ==============================================*/
+
+        static public function getRelTable($rel,$type,$table,$select,$orderBy,$orderMode,$startAt,$endAt)
+        {   
+            $relArray = explode(",",$rel);
+            $typeArray = explode(",",$type);
+
+            "SELECT $select FROM $relArray[0] INNER JOIN $relArray[1] ON $relArray[0].id_$typeArray[1]_"
+
+            /*===========================
+            Not Sorted and unrestricted
+            =============================*/ 
+            $sql = "SELECT $select FROM $table";
+            
+            /*===========================
+            Sorted and unrestricted
+            =============================*/ 
+            if($orderBy != null && $orderMode != null && $startAt == null && $endAt == null) 
+            {
+                $sql = "SELECT $select FROM $table ORDER BY $orderBy $orderMode";
+
+            }
+            /*===========================
+            Sorted and restricted
+            =============================*/
+            if ($orderBy != null && $orderMode != null && $startAt != null && $endAt != null) 
+            {
+                 
+                $sql = "SELECT $select FROM $table ORDER BY $orderBy $orderMode LIMIT $startAt $endAt";
+
+            }
+            /*===========================
+            Not Sorted and restricted
+            =============================*/
+            if ($orderBy == null && $orderMode == null && $startAt != null && $endAt != null) {
+                 
+                $sql = "SELECT $select FROM $table LIMIT $startAt $endAt";
+            }
+
+            $stmt = Connection::connect()->prepare($sql);
             
             try {
                 $stmt -> execute();
