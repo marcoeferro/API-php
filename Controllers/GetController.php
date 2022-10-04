@@ -27,9 +27,20 @@
         /*==========================================
         Unfitered Get Request between related tables 
         ===========================================*/
-        static public function getRelTable($rel,$type,$table,$select,$orderBy,$orderMode,$startAt,$endAt)
+        static public function getRelTable($rel,$type,$select,$orderBy,$orderMode,$startAt,$endAt)
         {
-            $response = GetModel::getRelTable($rel,$type,$table,$select,$orderBy,$orderMode,$startAt,$endAt);
+            $response = GetModel::getRelTable($rel,$type,$select,$orderBy,$orderMode,$startAt,$endAt);
+            
+            $return = new GetController();
+            $return -> fncResponse($response);
+
+        }
+        /*==========================================
+        Fitered Get Request between related tables 
+        ===========================================*/
+        static public function getRelTableFiltered($rel,$type,$select,$linkTo,$equalTo,$orderBy,$orderMode,$startAt,$endAt)
+        {
+            $response = GetModel::getRelTableFiltered($rel,$type,$select,$linkTo,$equalTo,$orderBy,$orderMode,$startAt,$endAt);
             
             $return = new GetController();
             $return -> fncResponse($response);
