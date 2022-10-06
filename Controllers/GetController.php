@@ -46,6 +46,39 @@
             $return -> fncResponse($response);
 
         }
+        /*===========================
+        Unrelated search Get Requests
+        =============================*/
+        static public function getTableSearch($table,$select,$linkTo,$search,$orderBy,$orderMode,$startAt,$endAt)
+        {
+            $response = GetModel::getTableSearch($table,$select,$linkTo,$search,$orderBy,$orderMode,$startAt,$endAt);
+
+            $return = new GetController();
+            $return -> fncResponse($response);
+
+        }
+        /*==========================================
+        Search Get Request between related tables 
+        ===========================================*/
+        static public function getRelTableSearch($rel,$type,$select,$linkTo,$search,$orderBy,$orderMode,$startAt,$endAt)
+        {
+            $response = GetModel::getRelTableSearch($rel,$type,$select,$linkTo,$search,$orderBy,$orderMode,$startAt,$endAt);
+            
+            $return = new GetController();
+            $return -> fncResponse($response);
+
+        }
+        /*==============================
+        Get Request for range selecction 
+        ================================*/
+        static public function getTableRange($table,$select,$linkTo,$between1,$between2,$orderBy,$orderMode,$startAt,$endAt,$filterTo,$inTo)
+        {
+            $response = GetModel::getTableRange($table,$select,$linkTo,$between1,$between2,$orderBy,$orderMode,$startAt,$endAt,$filterTo,$inTo);
+            
+            $return = new GetController();
+            $return -> fncResponse($response);
+
+        }
         /*================================
         Controller responses
         ==================================*/
